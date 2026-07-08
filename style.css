@@ -1,0 +1,326 @@
+/* ==========================================================================
+   POTVIS GAMES — neo-brutalist placeholder
+   ========================================================================== */
+
+:root {
+  --ink:      #111114;
+  --cream:    #ccece5;
+  --paper:    #ffffff;
+  --teal:     #5fc9b8;
+  --mint:     #bfe9de;
+  --blue:     #5b7fe0;
+  --deepblue: #3a4fb0;
+  --skyblue:  #a9cdf2;
+  --yellow:   #ffd23f;
+  --coral:    #ff6b57;
+
+  --shadow-lg: 10px 10px 0 var(--ink);
+  --shadow-md: 6px 6px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+
+  --border: 4px solid var(--ink);
+  --border-thick: 5px solid var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(var(--ink) 1.4px, transparent 1.4px);
+  background-size: 26px 26px;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* subtle grain overlay for texture */
+.noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+a { color: inherit; }
+
+/* ---------- ticker ---------- */
+.ticker {
+  border-bottom: var(--border);
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.ticker__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  animation: scroll-left 22s linear infinite;
+  padding-left: 100%;
+}
+
+.ticker .dot { color: var(--teal); }
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ---------- header ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(18px, 5vw, 56px);
+  border-bottom: var(--border);
+  background: var(--cream);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--teal);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.1rem;
+  transform: rotate(-4deg);
+}
+
+.brand__name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0.02em;
+}
+
+.pill-link {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  background: var(--paper);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 10px 18px;
+  border-radius: 999px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.pill-link:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+  background: var(--yellow);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(40px, 8vw, 90px) 20px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sticker {
+  position: absolute;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  background: var(--skyblue);
+  border: var(--border);
+  box-shadow: var(--shadow-sm);
+  padding: 8px 14px;
+  border-radius: 999px;
+  z-index: 2;
+}
+
+.sticker--secret {
+  top: 46px;
+  right: 4%;
+  transform: rotate(9deg);
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.sticker--est {
+  top: 110px;
+  left: 2%;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 640px) {
+  .sticker--secret { top: 18px; right: 2%; }
+  .sticker--est { top: 78px; left: 1%; }
+}
+
+.logo-card {
+  background: var(--paper);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+  border-radius: 28px;
+  padding: clamp(14px, 4vw, 30px);
+  width: min(360px, 78vw);
+  animation: float 5s ease-in-out infinite;
+}
+
+.logo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-10px) rotate(1deg); }
+}
+
+.headline {
+  margin: 42px 0 18px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-shadow: 5px 5px 0 var(--teal);
+}
+
+.subhead {
+  max-width: 480px;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.5;
+  font-weight: 500;
+  color: #2a2a2e;
+}
+
+/* ---------- signup (hidden for now) ---------- */
+.signup {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.signup__input {
+  font-family: 'Space Mono', monospace;
+  font-size: 1rem;
+  padding: 16px 20px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+  min-width: 260px;
+  outline: none;
+}
+
+.signup__input:focus {
+  background: var(--mint);
+}
+
+.signup__btn {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 16px 30px;
+  border: var(--border);
+  border-radius: 999px;
+  background: var(--blue);
+  color: var(--paper);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.signup__btn:hover {
+  background: var(--deepblue);
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.signup__note {
+  display: none;
+  margin-top: 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: #5a5a60;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  border-top: var(--border);
+  background: var(--ink);
+  color: var(--cream);
+  padding: 26px clamp(18px, 5vw, 56px) 34px;
+}
+
+.footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer__brand {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 0.95rem;
+}
+
+.footer__social {
+  display: none;
+  gap: 10px;
+}
+
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.footer__social a:hover {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--yellow);
+}
+
+.footer__copy {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  opacity: 0.75;
+}
