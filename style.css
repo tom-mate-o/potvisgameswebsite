@@ -166,12 +166,14 @@ a { color: inherit; }
   transform: rotate(9deg);
   background: var(--blue);
   color: var(--paper);
+
 }
 
 .sticker--est {
   top: 110px;
   left: 2%;
   transform: rotate(-8deg);
+
 }
 
 @media (max-width: 640px) {
@@ -200,6 +202,21 @@ a { color: inherit; }
   50%      { transform: translateY(-10px) rotate(1deg); }
 }
 
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50%      { transform: translateY(-10px) rotate(-1deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50%      { transform: translateY(-6px) rotate(-1deg); }
+}
+
 .headline {
   margin: 42px 0 18px;
   font-family: 'Archivo Black', sans-serif;
@@ -207,6 +224,7 @@ a { color: inherit; }
   line-height: 0.98;
   letter-spacing: -0.01em;
   text-shadow: 5px 5px 0 var(--teal);
+  animation: float-slow 5s ease-in-out infinite;
 }
 
 .subhead {
@@ -214,7 +232,14 @@ a { color: inherit; }
   font-size: clamp(1rem, 2vw, 1.15rem);
   line-height: 1.5;
   font-weight: 500;
-  color: #2a2a2e;
+  color: var(--ink);
+background: var(--paper);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+  border-radius: 28px;
+  padding: clamp(14px, 4vw, 30px);
+  width: min(360px, 78vw);
+  animation: float-slow-reverse 5s ease-in-out infinite;
 }
 
 /* ---------- signup (hidden for now) ---------- */
